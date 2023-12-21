@@ -1,0 +1,15 @@
+Build image:
+docker build -t <imagename:tag>
+Examples:
+(default) docker build -t nodeapp:v3 .
+(specify dockerfile) docker build -t nodeapp:v3 -f Dockerfile.dev .
+
+Run container:
+docker run -p 8000:3000 -v Get-Location:/usr/src/app -v /usr/src/app/node_modules --name my-node-app nodeapp:v3
+
+docker run 
+-p 8000:3000 (port binding)
+-v Get-Location:/usr/src/app (bind mounts, reflects changes locally to container. Use %cd% instead of Get-Location if using windows cmd prompt instead of powershell)
+-v /usr/src/app/node_modules (anon volume, speficy folders in container to not delete when copying)
+--name my-node-app (name of container)
+nodeapp:v3 (name of image)
