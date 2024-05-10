@@ -2,11 +2,12 @@ FROM node:alpine
 
 WORKDIR /usr/src/app
 
-COPY . .
+# this is for layering and build efficiency purposes. if you make a change to the codebase only (index.js), npm install will not be run.
+COPY ./package.json . 
 
-#RUN npm config set strict-ssl false
 RUN npm install
-#RUN npm config set strict-ssl true
+
+COPY . .
 
 EXPOSE 3000
 
